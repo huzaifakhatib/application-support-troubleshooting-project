@@ -1,0 +1,8 @@
+Incident Title: Website inaccessible due to database connection failure
+Severity: P1 (Critical — full site outage)
+Symptom/Impact: Browser displayed "Error establishing a database connection" when accessing the site.
+Root Cause: The MySQL service was stopped (simulated intentionally to test incident response).
+Diagnosis Steps: Ran sudo systemctl status mysql, which showed the service in an inactive/dead state.
+Resolution: Restarted the service using sudo systemctl start mysql.
+Verification: Confirmed the service was active via systemctl status mysql, then reloaded the website and confirmed it loaded normally.
+Prevention: Consider configuring Restart=on-failure in the systemd service file, and setting up a CloudWatch/monitoring alert for service downtime.
